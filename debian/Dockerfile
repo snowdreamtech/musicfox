@@ -2,6 +2,9 @@ FROM snowdreamtech/build-essential:bookworm AS builder
 
 ENV MUSICFOX_VERSION=4.5.3 \
     MUSICFOX_ROOT="/root/.config/go-musicfox" \
+    GOLANG_VERSION=1.22.7-1~bpo12+1 \ 
+    GOROOT=/usr/lib/go-1.22 \
+    PATH=$PATH:/usr/lib/go-1.22/bin \
     GO111MODULE=on \
     GOPROXY=https://proxy.golang.org,https://goproxy.io,direct
 
@@ -12,7 +15,7 @@ WORKDIR /workspace
 RUN set -eux \
     && apt-get -qqy update  \
     && apt-get -qqy install --no-install-recommends \ 
-    -t bookworm-backports golang-1.22=1.22.7-1~bpo12+1 \
+    -t bookworm-backports golang-1.22=${GOLANG_VERSION} \
     libflac-dev \
     libasound2-dev \ 
     && wget -c https://github.com/go-musicfox/go-musicfox/archive/refs/tags/v${MUSICFOX_VERSION}.tar.gz  \ 
