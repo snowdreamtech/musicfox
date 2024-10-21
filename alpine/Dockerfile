@@ -9,7 +9,7 @@ RUN mkdir /workspace
 
 WORKDIR /workspace
 
-RUN apk add --no-cache go=1.22.7-r0 \
+RUN apk add --no-cache go=1.22.8-r0 \
     bash \
     flac-dev \
     alsa-lib-dev \ 
